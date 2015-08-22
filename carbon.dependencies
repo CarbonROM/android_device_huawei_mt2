@@ -20,13 +20,13 @@
   {
     "remote": "cm",
     "revision": "cm-12.1",
-    "repository": "CyanogenModandroid_hardware_qcom_fm",
+    "repository": "CyanogenMod/android_hardware_qcom_fm",
     "target_path": "hardware/qcom/fm"
   },
   {
     "remote": "cm",
     "revision": "cm-11.0",
-    "repository": "CyanogenModandroid_hardware_qcom_media-caf-new",
+    "repository": "CyanogenMod/android_hardware_qcom_media-caf-new",
     "target_path": "hardware/qcom/media-caf-new"
   },
   {
