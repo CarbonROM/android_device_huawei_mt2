@@ -2,7 +2,7 @@
   {
     "remote": "gh",
     "revision": "cm-12.1",
-    "repository": "mdmower/kernel_huawei_msm8928",
+    "repository": "mdmower/android_kernel_huawei_msm8928",
     "target_path": "kernel/huawei/msm8928"
   },
   {
