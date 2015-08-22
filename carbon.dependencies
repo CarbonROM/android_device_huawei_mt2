@@ -34,4 +34,11 @@
     "revision": "cm-12.1",
     "repository": "mdmower/android_kernel_huawei_msm8928",
     "target_path": "kernel/huawei/msm8928"
+  },
+  {
+    "remote": "carbon",
+    "revision": "lp5.1",
+    "repository": "CarbonROM/proprietary_vendor_huawei",
+    "target_path": "vendor/huawei"
+  }
 ]
