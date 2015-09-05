@@ -33,6 +33,7 @@ PRODUCT_PACKAGES += \
 
 # Audio config files
 PRODUCT_PACKAGES += \
+    audio_effects.conf \
     audio_platform_info.xml \
     audio_policy.conf \
     mixer_paths.xml
@@ -151,7 +152,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml
 
 PRODUCT_PACKAGES += \
-    com.google.widevine.software.drm.xml \
     com.qualcomm.location.xml \
     qcnvitems.xml \
     qcrilhook.xml
@@ -180,7 +180,6 @@ PRODUCT_PACKAGES += \
     libwpa_client \
     p2p_supplicant_overlay.conf \
     WCNSS_cfg.dat \
-    WCNSS_hw_wlan_nv.bin \
     WCNSS_qcom_cfg.ini \
     WCNSS_qcom_wlan_nv.bin \
     wcnss_service \

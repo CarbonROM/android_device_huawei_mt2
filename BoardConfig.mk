@@ -28,9 +28,11 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := krait
 TARGET_CPU_MEMCPY_BASE_OPT_DISABLE := true
+MALLOC_IMPL := dlmalloc
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
+COMMON_GLOBAL_CFLAGS += -DHUAWEI_SOUND_PARAM_PATH=\"/etc/sound_param/mate2\"
 
 # Bluetooth
 BLUETOOTH_HCI_USE_MCT := true
@@ -40,17 +42,22 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/huawei/mt2/bluetooth
 
 # Board
 BOARD_USES_QCOM_HARDWARE := true
-COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
 TARGET_BOARD_PLATFORM := msm8226
 TARGET_BOOTLOADER_BOARD_NAME := MT2L03
+
+# Boot
+BOARD_CHARGING_CMDLINE_NAME := "androidboot.huawei_bootmode"
+BOARD_CHARGING_CMDLINE_VALUE := "hwcharger"
 
 # Build
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 TARGET_SPECIFIC_HEADER_PATH := device/huawei/mt2/include
+TARGET_USES_HUAWEI_APP_INFO := true
+TARGET_USES_HUAWEI_LOG := true
 
 # Camera
-COMMON_GLOBAL_CPPFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
+TARGET_RELEASE_CPPFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 USE_DEVICE_SPECIFIC_CAMERA := true
 
 # Filesystem
@@ -71,6 +78,8 @@ TARGET_QCOM_NO_FM_FIRMWARE := true
 EXTENDED_FONT_FOOTPRINT := true
 
 # Graphics
+MAX_EGL_CACHE_KEY_SIZE := 12*1024
+MAX_EGL_CACHE_SIZE := 2048*1024
 TARGET_CONTINUOUS_SPLASH_ENABLED := true
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
@@ -100,8 +109,6 @@ TARGET_POWERHAL_VARIANT := qcom
 TARGET_RECOVERY_DEVICE_MODULES := chargeled
 TARGET_RECOVERY_FSTAB = device/huawei/mt2/rootdir/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-BOARD_CHARGING_CMDLINE_NAME := "androidboot.huawei_bootmode"
-BOARD_CHARGING_CMDLINE_VALUE := "hwcharger"
 
 # Release tools
 TARGET_RELEASETOOLS_EXTENSIONS := device/huawei/mt2
@@ -117,14 +124,18 @@ TARGET_RIL_VARIANT := caf
 BOARD_SEPOLICY_DIRS += device/huawei/mt2/sepolicy
 BOARD_SEPOLICY_UNION += \
     libqmi_oem_main.te \
+    kernel.te \
     oeminfo.te \
     platform_app.te
 
 # TWRP
-# TARGET_RECOVERY_DEVICE_MODULES += libQSEEComAPI.so
+#   Uncomment the lines below only when building TWRP.
+#   Do not leave SELinux permissive when building CM or Cyanogen Recovery.
+# BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 RECOVERY_SDCARD_ON_DATA := true
 # RECOVERY_VARIANT := twrp
+# TARGET_RECOVERY_DEVICE_MODULES += libQSEEComAPI.so
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_EXTERNAL_STORAGE_MOUNT_POINT := "usb-otg"
 TW_EXTERNAL_STORAGE_PATH := "/usb-otg"
