@@ -33,10 +33,12 @@ PRODUCT_PACKAGES += \
 
 # Audio config files
 PRODUCT_PACKAGES += \
-    audio_effects.conf \
     audio_platform_info.xml \
     audio_policy.conf \
     mixer_paths.xml
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf
 
 # Bluetooth
 PRODUCT_PACKAGES += \
@@ -190,4 +192,4 @@ PRODUCT_PACKAGES += \
 $(call inherit-product,frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 # inherit from the non-open-source side, if present
-$(call inherit-product, vendor/huawei/mt2/mt2-vendor.mk)
+$(call inherit-product-if-exists, vendor/huawei/mt2/mt2-vendor.mk)

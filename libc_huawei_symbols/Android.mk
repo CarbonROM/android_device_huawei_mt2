@@ -12,25 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LOCAL_PATH:= $(call my-dir)
-
+LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
-LOCAL_MODULE       := audio_platform_info.xml
-LOCAL_MODULE_CLASS := ETC
-LOCAL_MODULE_TAGS  := optional
-LOCAL_SRC_FILES    := audio_platform_info.xml
-include $(BUILD_PREBUILT)
 
-include $(CLEAR_VARS)
-LOCAL_MODULE       := audio_policy.conf
-LOCAL_MODULE_CLASS := ETC
-LOCAL_MODULE_TAGS  := optional
-LOCAL_SRC_FILES    := audio_policy.conf
-include $(BUILD_PREBUILT)
+LOCAL_SRC_FILES := \
+    hw_cutils.c \
+    hw_log.c
 
-include $(CLEAR_VARS)
-LOCAL_MODULE       := mixer_paths.xml
-LOCAL_MODULE_CLASS := ETC
-LOCAL_MODULE_TAGS  := optional
-LOCAL_SRC_FILES    := mixer_paths.xml
-include $(BUILD_PREBUILT)
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
+LOCAL_MODULE := libc_huawei_symbols
+LOCAL_MODULE_TAGS := optional
+
+# Debugging (uncomment to enable)
+# LOCAL_CFLAGS += -DHW_LIBC_DEBUG
+# LOCAL_WHOLE_STATIC_LIBRARIES := liblog
+
+include $(BUILD_STATIC_LIBRARY)
